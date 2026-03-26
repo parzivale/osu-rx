@@ -220,7 +220,10 @@ namespace osu_rx.osu
                     Player = new OsuPlayer((UIntPtr)OsuProcess.ReadInt32(playerResult + (nuint)Signatures.Player.Offset));
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\nError during scan: {ex.Message}");
+            }
             finally
             {
                 if (timeAddress == UIntPtr.Zero || stateAddress == UIntPtr.Zero || replayModeAddress == UIntPtr.Zero
