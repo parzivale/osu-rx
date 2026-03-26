@@ -55,6 +55,7 @@ namespace osu_rx.osu.Memory
                 string bar = new string('#', filled) + new string('-', barWidth - filled);
                 int pct = total > 0 ? (int)((long)scanned * 100 / total) : 0;
                 Console.Write($"\r  [{bar}] {pct,3}% 0x{region.BaseAddress.ToUInt32():X8}");
+                Console.Out.Flush();
 
                 byte[] buffer = ReadMemory(region.BaseAddress, region.RegionSize.ToUInt32());
                 if (findMatch(patternBytes, buffer) is var match && match != UIntPtr.Zero)
