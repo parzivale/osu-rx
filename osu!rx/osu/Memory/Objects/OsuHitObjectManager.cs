@@ -35,7 +35,7 @@ namespace osu_rx.osu.Memory.Objects
 
                 for (int i = 0; i < hitObjectsCount; i++)
                 {
-                    UIntPtr hitObjectPointer = (UIntPtr)OsuProcess.ReadInt32(hitObjectsList + 0x8 + 0x4 * i);
+                    UIntPtr hitObjectPointer = (UIntPtr)OsuProcess.ReadInt32(hitObjectsList + (nuint)(0x8 + 0x4 * i));
 
                     HitObject hitObject = null;
 
@@ -64,7 +64,7 @@ namespace osu_rx.osu.Memory.Objects
                             List<Vector2> sliderPoints = new List<Vector2>();
                             for (int j = 0; j < sliderPointsCount; j++)
                             {
-                                UIntPtr sliderPoint = sliderPointsList + 0x8 + 0x8 * j;
+                                UIntPtr sliderPoint = sliderPointsList + (nuint)(0x8 + 0x8 * j);
 
                                 sliderPoints.Add(new Vector2(OsuProcess.ReadFloat(sliderPoint), OsuProcess.ReadFloat(sliderPoint + 0x4)));
                             }

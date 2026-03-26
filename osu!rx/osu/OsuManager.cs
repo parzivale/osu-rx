@@ -214,10 +214,10 @@ namespace osu_rx.osu
                     && OsuProcess.FindPattern(Signatures.ReplayMode.Pattern, out UIntPtr replayModeResult)
                     && OsuProcess.FindPattern(Signatures.Player.Pattern, out UIntPtr playerResult))
                 {
-                    timeAddress = (UIntPtr)OsuProcess.ReadInt32(timeResult + Signatures.Time.Offset);
-                    stateAddress = (UIntPtr)OsuProcess.ReadInt32(stateResult + Signatures.State.Offset);
-                    replayModeAddress = (UIntPtr)OsuProcess.ReadInt32(replayModeResult + Signatures.ReplayMode.Offset);
-                    Player = new OsuPlayer((UIntPtr)OsuProcess.ReadInt32(playerResult + Signatures.Player.Offset));
+                    timeAddress = (UIntPtr)OsuProcess.ReadInt32(timeResult + (nuint)Signatures.Time.Offset);
+                    stateAddress = (UIntPtr)OsuProcess.ReadInt32(stateResult + (nuint)Signatures.State.Offset);
+                    replayModeAddress = (UIntPtr)OsuProcess.ReadInt32(replayModeResult + (nuint)Signatures.ReplayMode.Offset);
+                    Player = new OsuPlayer((UIntPtr)OsuProcess.ReadInt32(playerResult + (nuint)Signatures.Player.Offset));
                 }
             }
             catch { }
@@ -244,7 +244,7 @@ namespace osu_rx.osu
 
             AppDomain.CurrentDomain.AssemblyResolve += (sender, eventArgs) => eventArgs.Name.Contains("osu!") ? Assembly.LoadFrom(assemblyPath) : null;
 
-            interProcessOsu = Activator.GetObject(interProcessOsuType, "ipc://osu!/loader");
+            throw new PlatformNotSupportedException(".NET Remoting IPC is not available on .NET 8+");
             bulkClientDataMethod = interProcessOsuType.GetMethod("GetBulkClientData");
         }
     }

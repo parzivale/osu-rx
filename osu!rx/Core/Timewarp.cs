@@ -28,7 +28,7 @@ namespace osu_rx.Core
 
             for (int i = 0; i < Signatures.AudioRateOffsets.Length; i++)
             {
-                audioRateAddress += Signatures.AudioRateOffsets[i];
+                audioRateAddress += (nuint)Signatures.AudioRateOffsets[i];
 
                 if (i != Signatures.AudioRateOffsets.Length - 1)
                     audioRateAddress = (UIntPtr)osuManager.OsuProcess.ReadInt32(audioRateAddress);

@@ -1,0 +1,9 @@
+[
+  {"pname":"inputsimulator","version":"1.0.4","hash":"sha256-Dytpc+dBRbicZPtC3sE90ea7UVIQ3sQx8BL8KuPVEd0="},
+  {"pname":"microsoft.aspnetcore.app.runtime.win-x64","version":"8.0.25","hash":"sha256-mBszMTKRrefocXxWYjgqVf0SNkjt/2eM/5s8Qp7qYXo="},
+  {"pname":"microsoft.netcore.app.host.win-x64","version":"8.0.25","hash":"sha256-XSZ8eium3XQCS9ZvUN6Biu42O3GANMdzQAIBO+Mxkks="},
+  {"pname":"microsoft.netcore.app.runtime.win-x64","version":"8.0.25","hash":"sha256-GkyqI8F4F3PGIJkQWWjhiTQw+r12b+Q8o3Q9iNpm9fE="},
+  {"pname":"osuparsers","version":"1.6.5","hash":"sha256-yBb6dAv5cL3IQmAokSlGajfQkHQono19RffYlFjt2DQ="},
+  {"pname":"simpleiniconfig","version":"1.0.1","hash":"sha256-4niEV0RKLIuJE71vXBzAeSlqpwatl5d3McL/v1ez0B4="},
+  {"pname":"system.numerics.vectors","version":"4.5.0","hash":"sha256-qdSTIFgf2htPS+YhLGjAGiLN8igCYJnCCo6r78+Q+c8="}
+]
