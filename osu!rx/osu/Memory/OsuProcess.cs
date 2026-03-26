@@ -38,9 +38,12 @@ namespace osu_rx.osu.Memory
         public bool FindPattern(string pattern, out UIntPtr result)
         {
             byte?[] patternBytes = parsePattern(pattern);
+            Console.WriteLine($"  Pattern: {pattern}");
 
+            Console.WriteLine("  Enumerating memory regions...");
             var regions = EnumerateMemoryRegions();
             int total = regions.Count;
+            Console.WriteLine($"  Found {total} regions");
             int scanned = 0;
             int barWidth = 30;
             foreach (var region in regions)
