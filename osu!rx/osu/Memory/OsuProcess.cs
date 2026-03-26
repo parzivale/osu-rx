@@ -48,7 +48,7 @@ namespace osu_rx.osu.Memory
             int barWidth = 30;
             foreach (var region in regions)
             {
-                if ((uint)region.BaseAddress < (uint)Process.MainModule.BaseAddress)
+                if ((ulong)region.BaseAddress < (ulong)Process.MainModule.BaseAddress)
                 {
                     scanned++;
                     continue;
@@ -57,15 +57,15 @@ namespace osu_rx.osu.Memory
                 int filled = total > 0 ? (int)((long)scanned * barWidth / total) : 0;
                 string bar = new string('#', filled) + new string('-', barWidth - filled);
                 int pct = total > 0 ? (int)((long)scanned * 100 / total) : 0;
-                Console.Write($"\r  [{bar}] {pct,3}% 0x{region.BaseAddress.ToUInt32():X8}");
+                Console.Write($"\r  [{bar}] {pct,3}% 0x{region.BaseAddress.ToUInt64():X16}");
                 Console.Out.Flush();
 
-                byte[] buffer = ReadMemory(region.BaseAddress, region.RegionSize.ToUInt32());
+                byte[] buffer = ReadMemory(region.BaseAddress, (uint)region.RegionSize.ToUInt64());
                 if (findMatch(patternBytes, buffer) is var match && match != UIntPtr.Zero)
                 {
-                    result = (UIntPtr)(region.BaseAddress.ToUInt32() + match.ToUInt32());
+                    result = (UIntPtr)(region.BaseAddress.ToUInt64() + match.ToUInt64());
                     Console.Write($"\r  [{new string('#', barWidth)}] 100%");
-                    Console.WriteLine($" Found at 0x{result.ToUInt32():X8}");
+                    Console.WriteLine($" Found at 0x{result.ToUInt64():X16}");
                     return true;
                 }
                 scanned++;
@@ -87,7 +87,7 @@ namespace osu_rx.osu.Memory
                 if (basicInformation.State != MemoryState.MemFree && !basicInformation.Protect.HasFlag(MemoryProtect.PageGuard))
                     regions.Add(new MemoryRegion(basicInformation));
 
-                address = (UIntPtr)(basicInformation.BaseAddress.ToUInt32() + basicInformation.RegionSize.ToUInt32());
+                address = (UIntPtr)(basicInformation.BaseAddress.ToUInt64() + basicInformation.RegionSize.ToUInt64());
             }
 
             return regions;
